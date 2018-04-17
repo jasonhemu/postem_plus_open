@@ -292,12 +292,22 @@ def upload_file():
 
 @app.route('/xml')
 def lti_xml():
-    return redirect(url_for('static', filename='lti.xml'))
+    try:
+        return redirect(url_for('static', filename='lti.xml'))
+    except Exception as e:
+        return render_template('error.html',
+                    alert_stay=e,
+                    alert_contact='Please contact support.')
 
 @app.route('/logout')
 def logout():
-    session.clear()
-    return redirect("https://commons.udel.edu/", code=302)
+    try:
+        session.clear()
+        return redirect("https://commons.udel.edu/", code=302)
+    except Exception as e:
+        return render_template('error.html',
+                    alert_stay=e,
+                    alert_contact='Please contact support.')
 
 if __name__ == "__main__":
     app.run(debug=True)
