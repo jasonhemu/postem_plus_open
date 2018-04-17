@@ -7,6 +7,10 @@
 * Canvas API token with admin access.
 * AWS S3 access key & secret (It is recommended to enable "Versioning" on AWS S3)
 
+```
+git clone https://github.com/jasonhemu/postem_plus_open.git
+```
+
 ### Edit settings.py
 
 Make sure to replace all the required areas.
