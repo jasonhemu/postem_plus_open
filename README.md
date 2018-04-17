@@ -1,12 +1,19 @@
 # LTI Template for Python and Flask
 
-## Setup
+## Getting Started
+
+### Prerequisites
+
+* Canvas API token with admin access.
+* AWS S3 access key & secret
 
 ### Edit settings.py
 Make sure to replace all the required areas.
 
+* It is recommended to enable "Versioning" on AWS S3
+
 ### Edit static/lti.xml
-You may use this tool (https://www.edu-apps.org/build_xml.html) to regenertate your XML file.
+You may use this tool (https://www.edu-apps.org/build_xml.html) to regenerate your XML file.
 
 ### Deploy to Heroku
 Click on this button -> [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
@@ -21,5 +28,9 @@ Click on this button -> [![Deploy](https://www.herokucdn.com/deploy/button.svg)]
 
 ## Inspired By
 
-* My former colleague Becky
+* My former colleague [Becky Kinney](http://sites.udel.edu/bkinney/2013/12/04/postem-for-canva-updates/)
 * [lti-template-flask] (https://github.com/ucfopen/lti-template-flask)
+
+## Author
+
+* Mu He - Educational Technology Consultant at UD [IT-ATS](http://sites.udel.edu/ats/)
