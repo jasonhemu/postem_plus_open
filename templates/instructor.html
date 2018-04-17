@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container-fluid" >
+    <h2>Instructor View</h2>
+    <div id="alert-stay">
+        {{ alert_stay }}
+    </div>
+</div>
+
+<div class="container-fluid" >
+  <table class="table">
+    <thead>
+      <tr>
+        {% for item in postem_table_header %}
+        <th class="{{ item }}">
+          <button class="btn btn-success standalone_open" id="headerBTN">{{ item }}</button>
+        </th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for items in postem_table_body %}
+      <tr>
+        {% for item in items %}
+        <td>{{ item }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+<div class="container-fluid">
+  <hr>
+</div>
+
+<div class="container-fluid" >
+  <h2>Upload CSV</h2>
+
+  <div id="alert-stay">
+    Your file should have student names in the first column,
+    and ids in the second (SISID).
+    All other columns will be treated as grades. Download <a href="{{url_for('template')}}">template</a> or
+    <a href="{{ url_for('download_csv') }}">existing CSV file</a>
+  </div>
+</div>
+
+
+<div class="container-fluid" >
+
+  <div id="dropzone">
+    <form action="/upload" class="dropzone needsclick dz-clickable" enctype="multipart/form-data" id="my-awesome-dropzone">
+      <div class="dz-message needsclick">
+        Drop files here or click to upload.
+      </div>
+    </form>
+  </div>
+
+</div><!-- /.container-fluid -->
+
+{% endblock content %}

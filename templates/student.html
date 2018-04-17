@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if alert_stay %}
+<div class="container-fluid" >
+  <div id="alert-stay">
+      {{ alert_stay }}
+  </div>
+</div>
+{% endif %}
+
+{% if postem_table_display %}
+<div class="container-fluid" >
+  <table class="table becomeStudent" id="studentTableTemplate">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for key, value in postem_table_student %}
+      <tr>
+        <td>{{ key }}</td>
+        <td>{{ value }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+{% endblock content %}

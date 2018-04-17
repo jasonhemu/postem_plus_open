@@ -1,0 +1,7 @@
+flask
+gunicorn
+pylti
+werkzeug
+requests
+boto3
+pandas

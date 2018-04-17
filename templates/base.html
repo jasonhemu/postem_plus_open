@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Post'Em Plus">
+    <meta name="author" content="Mu He, Ed. D.">
+    <link rel="icon" href="static/favicon.ico">
+
+    <title>Post'Em Plus</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='custom.css') }}" rel="stylesheet">
+
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  </head>
+
+  <body>
+      <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbart" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Post'Em Plus</a>
+
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link"><span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+              <a class="nav-link" href="#" target="_blank">Help</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('logout') }}" id="btn_logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container" >
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}" id="stay_alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+
+      <!-- Stand alone -->
+
+      <div id="standalone">
+        <h4 id="student_table_header"></h4>
+        <div id="student_table"></div>
+        <div id="student_table_BTN_close">
+          <button class="btn btn-primary standalone_close">Close</button>
+        </div>
+      </div>
+
+      <div id="basic">
+        <h4 id="basic_message"></h4>
+        <div style="text-align:center; padding: 5px;">
+          <button class="btn btn-primary basic_close" style="margin: auto auto; text-align:center">Close</button>
+        </div>
+      </div>
+
+      {% block content %} {% endblock %}
+
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+      <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+      <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+
+      <!-- jQuery Popup Overlay -->
+      <script src="{{ url_for('static', filename='js/jquery.popupoverlay.js') }}"></script>
+
+      <!-- Dropzone,js -->
+      <script src="{{ url_for('static', filename='js/dropzone.js') }}"></script>
+
+      <script>
+      $(document).ready(function() {
+
+        $('.Name button').hide();
+        $('th').click(function() {
+            var grade_items = []
+            var grades = [];
+            var header_text = $(this).text();
+
+            var index = $(this).index();
+            var index = index + 1;
+            //console.log(index);
+
+            grade_items = [];
+            $('.table tbody tr td:nth-child(1)').each( function(){
+               grade_items.push( $(this).text() );
+            });
+            //console.log(grade_items);
+
+            // var grades = [];
+            var targetClass = '.table tbody tr td:nth-child(' + index + ')'
+            $(targetClass).each( function(){
+               //add item to array
+               grades.push( $(this).text() );
+            });
+            //console.log(grades)
+
+            var student_grade = [];
+            var student_grade = grade_items.map(function(e, i) {
+              return [e, grades[i]];
+            });
+            //console.log(student_grade)
+
+            function escapeHtml(unsafe) {
+                return unsafe
+                     .replace(/&/g, "&amp;")
+                     .replace(/</g, "&lt;")
+                     .replace(/>/g, "&gt;")
+                     .replace(/"/g, "&quot;")
+                     .replace(/'/g, "&#039;");
+            }
+
+            var student_table= "<table class='table' id='student_table'><tbody>";
+            for (var i=0; i<student_grade.length; i++) {
+                student_table+="<tr><td style='width: 100px;'>" + escapeHtml(student_grade[i][0]) + "</td><td>" + escapeHtml(student_grade[i][1]) + "</td></tr>";
+            }
+            student_table+="</tbody></table>";
+            /* console.log(student_table); */
+
+            $("#student_table_header").html(header_text);
+            $("#student_table").html(student_table);
+        });
+
+        $("#stay_alert").fadeTo(3000, 500).slideUp(500, function(){
+            $("#success-alert").slideUp(500);
+        });
+
+        $('#standalone').popup({
+          color: 'white',
+          opacity: 1,
+          transition: '0.3s',
+          scrolllock: true,
+          blur: false,
+          closetransitionend: function() {
+            $("#student_table_header").text(''); // Clear content
+            $("#student_table").text('');        // Clear content
+          }
+        });
+
+        $('#basic').popup({
+          color: 'black',
+          scrolllock: true,
+          background: true,
+          opacity: 0.3,
+          transition: 'all 0.3s',
+          blur: false,
+          closetransitionend: function() {
+            $("#basic_message").text('');        // Clear content
+            location.reload();
+          }
+        });
+
+        Dropzone.options.myAwesomeDropzone = {
+          paramName: "file", // The name that will be used to transfer the file
+          maxFilesize: 5, // MB
+          method: "POST",
+          maxFiles: 1,
+          createImageThumbnails: false,
+          previewsContainer: false,
+          accept: function(file, done) {
+            console.log(file.name.indexOf('.csv') )
+            if (file.name.indexOf('.csv') <= 0) {
+              done();
+              $("#basic_message").text("Please upload a CSV file.");
+              $("#basic").popup("show");
+            }
+            else {
+              done();
+              $("#basic_message").text("Upload Success!");
+              $("#basic").popup("show");
+            }
+          }
+        };
+
+      });
+      </script>
+
+
+  </body>
+</html>
