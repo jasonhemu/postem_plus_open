@@ -1,0 +1,6 @@
+{
+  "name": "Post'Em Plus",
+  "description": "Post'Em LTI Tool for Canvas",
+  "repository": "https://github.com/jasonhemu/postem_plus_open",
+  "keywords": ["Canvas", "LTI", "Flask"]
+}
