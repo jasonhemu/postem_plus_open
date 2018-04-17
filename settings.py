@@ -9,11 +9,10 @@
 # key/secret sets for them.
 
 # Configuration for LTI
-CONSUMER_KEY = ''
-SHARED_SECRET = ''
+CONSUMER_KEY = < Configuration Required >
+SHARED_SECRET = < Configuration Required >
 
 # Configuration for PYLTI
-
 PYLTI_CONFIG = {
     'consumers': {
         CONSUMER_KEY: {
@@ -26,7 +25,7 @@ PYLTI_CONFIG = {
 
 # Secret key used for Flask sessions, etc. Must stay named 'secret_key'.
 # Can be any randomized string, recommend generating one with os.urandom(24)
-secret_key = ''
+secret_key = < Configuration Required >
 
 # Application Logging
 LOG_FILE = 'error.log'
@@ -36,12 +35,12 @@ LOG_MAX_BYTES = 1024 * 1024 * 5  # 5 MB
 LOG_BACKUP_COUNT = 1
 
 # Configuration for Canvas API
-CANVAS_API_URL = ''
-CANVAS_API_KEY = ''
+CANVAS_API_URL = < Configuration Required >
+CANVAS_API_KEY = < Configuration Required >
 HEADERS = {'Authorization':'Bearer ' + CANVAS_API_KEY}
 
 # Configuration for File Upload with AWS S3
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY =''
-BUCKET = ''
+AWS_ACCESS_KEY_ID = < Configuration Required >
+AWS_SECRET_ACCESS_KEY = < Configuration Required >
+BUCKET = < Configuration Required >
 ALLOWED_EXTENSIONS = set(['csv'])
