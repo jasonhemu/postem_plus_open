@@ -1,4 +1,8 @@
-# LTI Template for Python and Flask
+# Post'Em Tool for Canvas
+
+Post 'Em is a tool that allows you to upload and post a spreadsheet with special access controls for your students. It is used by many as an alternative to Sakai's Gradebook tool. You can create a spreadsheet with a row for each student and a column for each entry. The benefit of Post 'Em is that you are free to enter in any data you wish, as opposed to the numeric grade-based Gradebook tool. It allows you to enter traditional numeric grade scores, but accompanied with more in-depth feedback and comments.
+
+My former colleague, Becky Kinney, brought this tool from Sakai to Canvas. However, the tool is broken due to the changes in Canvas API. Initially, this tool is written in PHP. To learn Python and Flask, I decided to "reinvent the wheel", and rename it to "Post'Em Plus". This tool can be quickly deployed to Heroku for testing. It uses AWS S3 to store CSV files, which enables versioning and extra security features. Moreover, the user interface is aligned with Canvas styles now. The tool can also be deployed to your local server. You may find tons of tutorials regarding how to deploy Flask app. Finally, I'm very new to the Python's world, and this is my first time using Flask for developing a web app. If you find any bugs or places can be improved, please do let me know. Should you have any questions and concerns, feel free to create a "new issue". I will try my best to answer it.
 
 ## Getting Started
 
