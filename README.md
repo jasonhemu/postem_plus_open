@@ -5,12 +5,10 @@
 ### Prerequisites
 
 * Canvas API token with admin access.
-* AWS S3 access key & secret
+* AWS S3 access key & secret (It is recommended to enable "Versioning" on AWS S3)
 
 ### Edit settings.py
 Make sure to replace all the required areas.
-
-* It is recommended to enable "Versioning" on AWS S3
 
 ### Edit static/lti.xml
 You may use this tool (https://www.edu-apps.org/build_xml.html) to regenerate your XML file.
