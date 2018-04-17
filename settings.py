@@ -35,12 +35,12 @@ LOG_MAX_BYTES = 1024 * 1024 * 5  # 5 MB
 LOG_BACKUP_COUNT = 1
 
 # Configuration for Canvas API
-CANVAS_API_URL = < Configuration Required >
+CANVAS_API_URL = < Configuration Required > # e.g. https://udel.instructure.com/api/v1/
 CANVAS_API_KEY = < Configuration Required >
 HEADERS = {'Authorization':'Bearer ' + CANVAS_API_KEY}
 
 # Configuration for File Upload with AWS S3
 AWS_ACCESS_KEY_ID = < Configuration Required >
 AWS_SECRET_ACCESS_KEY = < Configuration Required >
-BUCKET = < Configuration Required >
+BUCKET = < Configuration Required > # e.g. postem
 ALLOWED_EXTENSIONS = set(['csv'])
