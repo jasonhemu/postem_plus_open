@@ -1,17 +1,12 @@
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
 # LTI Template for Python and Flask
 
 ## Setup
 
-### Virtual Environment
-Create a virtual environment that uses Python 3.6.5:
-
-Install the dependencies from the requirements file. 
-
-```
-pip install -r requirements.txt
-```
-
-### Edit local settings file
+### Edit settings.py
 Make sure to replace all the required areas.
+
+### Edit static/lti.xml
+You may use this tool (https://www.edu-apps.org/build_xml.html) to regenertate your XML file.
+
+### Deploy to Heroku
+Click on this button -> [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
